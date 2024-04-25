@@ -3,6 +3,9 @@ const db = require("./db");
 const bodyParser = require("body-parser");
 require('dotenv').config()
 
+// server connection
+const PORT = process.env.PORT || 3000
+
 const app = express();
 
 // use middleware
@@ -21,8 +24,7 @@ const menuRoutes = require('./routes/menuRoutes');
 app.use('/api/menuitem',menuRoutes);
 
 
-// server connection
-const PORT = process.env.PORT || 3000
+
 app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
