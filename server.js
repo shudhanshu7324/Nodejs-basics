@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 // app.post("/person", (req, res) => {
+
 //   const data = req.body; // Assumingthe request body contains the person data
 
 // Create a new person documentusing the mongoose model
@@ -44,6 +45,8 @@ app.get("/", (req, res) => {
 // });
 
 // person api
+
+
 app.post("/person", async (req, res) => {
   try {
     const data = req.body;
@@ -67,6 +70,24 @@ app.get("/person", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+
+// parameterised api
+app.get('/person/:worktype', async(req,res) => {
+  try {
+    const worktype = req.params.worktype; // Extract the worktype from the url parameter
+    if(worktype === 'chef' || worktype === 'manager' || worktype === 'waiter'){
+      const response = await Person.find({work: worktype});
+      console.log('reponse fetched');
+      res.status(200).json(response);
+    }else{
+      res.status(404).json({error: "Invalid worktype"})
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+})
 
 
 // Menuitem api
