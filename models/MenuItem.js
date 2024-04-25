@@ -20,7 +20,7 @@ const menuSchema = mongoose.Schema({
     default: false,
   },
   ingredients: {
-    type: String,
+    type: [String],
     default: [],
   },
   num_sales: {

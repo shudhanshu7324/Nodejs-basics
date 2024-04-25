@@ -6,8 +6,8 @@ const mongoURL = "mongodb://127.0.0.1:27017/hotels";
 
 // Setup MongoDB connection
 mongoose.connect(mongoURL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
 });
 
 const db = mongoose.connection;
