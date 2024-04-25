@@ -48,4 +48,25 @@ router.post("/", async (req, res) => {
   })
 
 
+  // update
+  router.put('/:id',async (req,res)=>{
+    try {
+      const personId = req.params.id;
+      const updatedPersonData = req.body;
+      const response = await Person.findByIdAndUpdate(personId,updatedPersonData,{
+        new: true,
+        runValidators:true
+      })
+      if(!response){
+        return res.status(404).json({error: 'Person not found'})
+      }
+      console.log("Data updated");
+      res.status(200).json(response)
+    } catch (error) {
+      console.log("error");
+      res.status(500).json({error: 'Internal server error'})
+    }
+  })
+
+
   module.exports = router;  
